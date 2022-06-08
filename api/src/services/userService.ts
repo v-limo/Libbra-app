@@ -6,7 +6,6 @@ import Book, { bookDocument } from '../models/booksModel'
 
 // returnAll
 const returnAll = async (UserId: string): Promise<userDocument | null> => {
-  //Remove user from booksModel > to booksService later
   const books = await Book.find({ user: UserId })
   books.map(async (book) => {
     const foundBook = await Book.findByIdAndUpdate(
@@ -18,8 +17,6 @@ const returnAll = async (UserId: string): Promise<userDocument | null> => {
       throw new NotFoundError(`Book ${book} not found`)
     }
   })
-  // *********
-
   const foundUser = await User.findByIdAndUpdate(
     UserId,
     { books: [] },
@@ -33,18 +30,15 @@ const returnAll = async (UserId: string): Promise<userDocument | null> => {
   return foundUser
 }
 
-// returnBookS
+// return Book Single
 const returnBookS = async (
   UserId: string,
   bookId: string
 ): Promise<userDocument | null> => {
   const user = await User.findById(UserId).select('books')
-
   if (!user) {
     throw new NotFoundError(`User ${UserId} not found`)
   }
-  // *********
-  //Remove user from booksModel > to booksService later
   const foundBook = await Book.findByIdAndUpdate(
     { _id: bookId },
     { user: undefined },
@@ -53,7 +47,6 @@ const returnBookS = async (
   if (!foundBook) {
     throw new NotFoundError(`Book ${bookId} not found`)
   }
-  // *********
 
   const userbooks = user.books
   const updatedBooks = userbooks
@@ -81,14 +74,9 @@ const updateBorrow = async (
   if (!user) {
     throw new NotFoundError(`User ${UserId} not found`)
   }
-
   const reqbooks = books.books as string[]
   const userbooks = user?.books?.map((book) => book.toString()) as string[]
-
   const updatedBooks = _.uniq([...userbooks, ...reqbooks])
-
-  // *********
-  // add user to booksModel
   updatedBooks?.map(async (book) => {
     const foundBook = await Book.findByIdAndUpdate(
       { _id: book },
@@ -99,8 +87,8 @@ const updateBorrow = async (
       throw new NotFoundError(`Book ${book} not found`)
     }
   })
-  // *********
 
+  // foundUser
   const foundUser = await User.findByIdAndUpdate(
     UserId,
     { books: updatedBooks },
@@ -114,7 +102,7 @@ const updateBorrow = async (
   return foundUser
 }
 
-// Update admin status
+// Update admin
 const updateAdmin = async (
   UserId: string,
   admin: Partial<userDocument>
@@ -122,17 +110,10 @@ const updateAdmin = async (
   const foundUser = await User.findByIdAndUpdate(UserId, admin, {
     new: true,
   })
-
   if (!foundUser) {
     throw new NotFoundError(`User ${UserId} not found`)
   }
   return foundUser
-}
-
-// *****************************************************************************
-
-const create = async (user: userDocument): Promise<userDocument> => {
-  return user.save()
 }
 
 const findById = async (UserId: string): Promise<userDocument> => {
@@ -143,10 +124,6 @@ const findById = async (UserId: string): Promise<userDocument> => {
   }
 
   return foundUser
-}
-
-const findAll = async (): Promise<userDocument[]> => {
-  return User.find()
 }
 
 const update = async (
@@ -165,12 +142,20 @@ const update = async (
 
 const deleteUser = async (UserId: string): Promise<userDocument | null> => {
   const foundUser = User.findByIdAndDelete(UserId)
-
   if (!foundUser) {
     throw new NotFoundError(`User ${UserId} not found`)
   }
-
   return foundUser
+}
+
+// findAll
+const findAll = async (): Promise<userDocument[]> => {
+  return User.find()
+}
+
+// create a new user
+const create = async (user: userDocument): Promise<userDocument> => {
+  return user.save()
 }
 
 export default {

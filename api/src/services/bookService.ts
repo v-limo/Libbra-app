@@ -8,11 +8,9 @@ const create = async (book: bookDocument): Promise<bookDocument> => {
 
 const findById = async (bookId: string): Promise<bookDocument> => {
   const foundBook = await Book.findById(bookId)
-
   if (!foundBook) {
     throw new NotFoundError(`book ${bookId} not found`)
   }
-
   return foundBook
 }
 
@@ -27,21 +25,17 @@ const update = async (
   const foundBook = await Book.findByIdAndUpdate(bookId, update, {
     new: true,
   })
-
   if (!foundBook) {
     throw new NotFoundError(`Book ${bookId} not found`)
   }
-
   return foundBook
 }
 
 const deleteBook = async (bookId: string): Promise<bookDocument | null> => {
   const foundBook = Book.findByIdAndDelete(bookId)
-
   if (!foundBook) {
     throw new NotFoundError(`Book ${bookId} not found`)
   }
-
   return foundBook
 }
 

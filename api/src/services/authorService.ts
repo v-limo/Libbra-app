@@ -27,7 +27,6 @@ const update = async (
   if (!foundAuthor) {
     throw new NotFoundError(`Author ${authorId} not found`)
   }
-
   return foundAuthor
 }
 
@@ -39,7 +38,6 @@ const deleteAuthor = async (
   if (!foundAuthor) {
     throw new NotFoundError(`Author ${authorId} not found`)
   }
-
   return foundAuthor
 }
 
