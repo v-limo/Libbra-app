@@ -3,11 +3,7 @@ import dotenv from 'dotenv'
 import express from 'express'
 import passport from 'passport'
 
-import {
-  facebookStrategy,
-  googleTokenStrategy,
-  jwtStrategy,
-} from './config/passport'
+import { googleTokenStrategy, jwtStrategy } from './config/passport'
 import apiContentType from './middlewares/apiContentType'
 import apiErrorHandler from './middlewares/apiErrorHandler'
 import authorRouter from './routers/authorsRoutes'
@@ -28,7 +24,7 @@ app.use(express.json())
 // passport strategies
 app.use(passport.initialize())
 passport.use(googleTokenStrategy)
-passport.use(facebookStrategy)
+// passport.use(facebookStrategy)
 passport.use(jwtStrategy)
 
 // Set up routers

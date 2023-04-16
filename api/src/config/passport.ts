@@ -1,5 +1,4 @@
 import console from 'console'
-import passport from 'passport'
 import FacebookStrategy from 'passport-facebook'
 import GoogleTokenStrategy from 'passport-google-id-token'
 import passportJwt from 'passport-jwt'
@@ -8,7 +7,6 @@ import User from '../models/userModel'
 import {
   FACEBOOK_ID,
   FACEBOOK_SECRET,
-  GITHUB_CLIENT_ID,
   GOOGLE_CLIENT_ID,
   JWT_SECRET,
 } from '../util/secrets'
@@ -62,27 +60,27 @@ export const jwtStrategy = new JwtStrategy(
   }
 )
 
-// facebook strategy here
-export const facebookStrategy = new FacebookStrategy.Strategy(
-  {
-    clientID: FACEBOOK_ID,
-    clientSecret: FACEBOOK_SECRET,
-    callbackURL: 'http://localhost:5000/api/v1/users/facebook/callback',
-    profileFields: ['id', 'displayName', 'email'],
-  },
-  async (accessToken: any, refreshToken: any, profile: any, done: any) => {
-    console.log({ profile })
-    const email = profile.emails[0].value
-    const userName = profile.displayName
-    const user = await findOrCreate(email, userName)
-    console.log('Facebook : ' + user)
-    if (user) {
-      done(null, user)
-    } else {
-      done(null, false)
-    }
-  }
-)
+// // facebook strategy here
+// export const facebookStrategy = new FacebookStrategy.Strategy(
+//   {
+//     clientID: FACEBOOK_ID,
+//     clientSecret: FACEBOOK_SECRET,
+//     callbackURL: 'http://localhost:5000/api/v1/users/facebook/callback',
+//     profileFields: ['id', 'displayName', 'email'],
+//   },
+//   async (accessToken: any, refreshToken: any, profile: any, done: any) => {
+//     console.log({ profile })
+//     const email = profile.emails[0].value
+//     const userName = profile.displayName
+//     const user = await findOrCreate(email, userName)
+//     console.log('Facebook : ' + user)
+//     if (user) {
+//       done(null, user)
+//     } else {
+//       done(null, false)
+//     }
+//   }
+// )
 
 // // facebook strategy here
 // export const facebookLogin = passport.authenticate('facebook', {
