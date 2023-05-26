@@ -1,4 +1,4 @@
-# [Library application](https://libbra.netlify.app/)
+# [Library application](https://libbra-frontend.onrender.com/)
 
 # Description
 
@@ -33,7 +33,7 @@ ps. this project is a solution to intergrify fullstack assignment
 //image here
 <img align>
 
-- ### [api](https://libbra-backend.herokuapp.com/api/v1/books)
+- ### [api](https://libbra-finnaly.onrender.com/api/v1/books)
   A live demo of the app is hosted on Heroku.
 
 _Due to demo reasons and Heroku free terms, if an app receives no web traffic in a 30-minute period, it will sleep. Therefore, during the first launch, the application may take longer to load than usual, approximately 15 - 20 seconds. So please be patient and wait for the app to launch. Subsequent launches will be relatively fast._
@@ -68,7 +68,7 @@ _Live demo of the client is hosted on netlify_
 Clone this repository to the desired location
 
 ```Shell
-git clone https://github.com/v-limo/fs9-fullstack-project.git
+git clone https://github.com/v-limo/libbra-app.git
 ```
 
 <br>
