@@ -38,9 +38,9 @@ ps. this project is a solution to intergrify fullstack assignment
 
 _Due to demo reasons and Heroku free terms, if an app receives no web traffic in a 30-minute period, it will sleep. Therefore, during the first launch, the application may take longer to load than usual, approximately 15 - 20 seconds. So please be patient and wait for the app to launch. Subsequent launches will be relatively fast._
 
-- ### [client](https://libbra.netlify.app/)
+- ### [client](https://libbra-frontend.onrender.com/)
 
-_Live demo of the client is hosted on netlify_
+_Live demo of the client is hosted on render
 
 ## Technology stack
 
