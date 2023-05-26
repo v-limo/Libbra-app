@@ -9,7 +9,7 @@
   "author": "Bowden Kelly",
   "license": "MIT",
   "scripts": {
-    "start": "node dist/server.js",
+    "start": "ts-node src/server.ts",
     "start:dev": "nodemon src/server.ts",
     "build": "tsc",
     "watch-ts": "tsc -w",
